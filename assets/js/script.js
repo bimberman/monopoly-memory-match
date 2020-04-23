@@ -4,8 +4,8 @@ var cardContainerEle = document.getElementById("gameCards");
 var cards = [];
 var cardsFront = [];
 var cardsBack = [];
-var classNames = [
-                  ]
+var classNames = [];
+var numOfCards = 28;
 
 // Card matching mechanics
 var firstCardClicked;
@@ -33,7 +33,7 @@ var resetButtonEle = document.getElementById("reset-button");
 /* ----------- function calls ----------- */
 createCards();
 shuffleCards();
-// addCards();
+addCards();
 
 /*----------- Event Listeners -----------*/
 // Event listener for a click on a card
@@ -146,7 +146,7 @@ function addCards(){
     return "No cards in the collection";
   }
 
-  for (let cardIndex = 0; cardIndex < 18; cardIndex++) {
+  for (let cardIndex = 0; cardIndex < numOfCards; cardIndex++) {
     cardContainerEle.append(cards[cardIndex]);
   }
 }
@@ -158,15 +158,16 @@ function createCards(){
     cardsBack = [];
   }
 
-  for(let cardIndex = 0; cardIndex<18 ; cardIndex++){
+  for(let cardIndex = 0; cardIndex<numOfCards ; cardIndex++){
     cards.push(document.createElement("div"));
     cardsFront.push(document.createElement("div"));
     cardsBack.push(document.createElement("div"));
 
-    cards[cardIndex].classList.add("card", "col-2");
+    cards[cardIndex].classList.add("card", "game-col2");
     cards[cardIndex].setAttribute("id", `card${cardIndex}`)
 
-    cardsFront[cardIndex].classList.add("card-front", `${classNames[cardIndex%9]}`);
+    cardsFront[cardIndex].classList.add("card-front");
+    cardsFront[cardIndex].style.backgroundImage = `url(../images/slim_cards/slim_card_${cardIndex}.jpg)`
     cardsFront[cardIndex].setAttribute("id", `card-front${cardIndex}`);
 
     cardsBack[cardIndex].classList.add("card-back");

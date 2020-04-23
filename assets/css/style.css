@@ -43,6 +43,8 @@ header{
 }
 
 .cards-container{
+  display: flex;
+  flex-wrap: wrap;
   background-image: url(../images/M_board.jpg);
   background-size: contain;
   background-repeat: no-repeat;
@@ -95,7 +97,7 @@ header{
 }
 
 .card{
-  height: 30%;
+  height: 20%;
   background-image: url(../images/lfz-card.jpg);
   background-size: 100%;
   background-repeat: no-repeat;
@@ -165,6 +167,11 @@ p{
   flex-wrap: nowrap;
   position: relative;
   left: 0.1%;
+}
+
+#gameCards{
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .win-modal{
