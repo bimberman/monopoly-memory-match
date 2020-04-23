@@ -14,7 +14,9 @@ var firstCardClicked;
 var secondCardClicked;
 var firstCardClasses;
 var secondCardClasses;
-var maxMatches = 9;
+var thirdCardClicked;
+var thirdCardClasses;
+var maxMatches = 10;
 var matches = 0;
 
 // The modal which will inform the user they have won
