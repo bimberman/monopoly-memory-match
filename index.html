@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <title>Memory Match</title>
+</head>
+<body>
+  <div class="row header-row header-row">
+    <header>Ben Imberman Memory Match</header>
+  </div>
+  <div class="row game-row main-row">
+    <aside class="stats-container col-2">
+      <div class="stats col-10">stats</div>
+      <div class="stats col-10">Games Played</div>
+      <div class="stats col-10" id="games-played">0</div>
+      <div class="stats col-10">Attempts</div>
+      <div class="stats col-10" id="attempts">0</div>
+      <div class="stats col-10">Accuracy</div>
+      <div class="stats col-10" id="accuracy">0%</div>
+    </aside>
+    <main class="cards-container col-10" id="gameCards">
+      <div class="win-modal hidden" id="win-modal">
+        Congratulations, You Have Won!
+        <button id="reset-button">Wanna Play Again?</button>
+      </div>
+    </main>
+  </div>
+  <script src="./assets/js/script.js"></script>
+</body>
+</html>
