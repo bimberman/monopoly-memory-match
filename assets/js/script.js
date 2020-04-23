@@ -35,7 +35,7 @@ var resetButtonEle = document.getElementById("reset-button");
 /* ----------- function calls ----------- */
 createCards();
 shuffleCards();
-addCards();
+// addCards();
 
 /*----------- Event Listeners -----------*/
 // Event listener for a click on a card

@@ -8,9 +8,9 @@
 </head>
 <body>
   <div class="row header-row header-row">
-    <header>Ben Imberman Monopoly Memory Match</header>
+    <header>Monopoly Memory Match</header>
   </div>
-  <div class="row game-row main-row">
+  <div class="row main-row">
     <aside class="stats-container col-2">
       <div class="stats col-10" id="stats">STATS</div>
       <div class="stats col-10" id="games-played-text">Games<br>Played</div>
@@ -20,16 +20,43 @@
       <div class="stats col-10" id="accuracy-text">Accuracy</div>
       <div class="stats col-10" id="accuracy">0%</div>
     </aside>
-    <main class="cards-container col-6" id="gameCards">
+    <main class="cards-container col-6">
       <div class="win-modal hidden" id="win-modal">
         Congratulations, You Have Won!
         <button id="reset-button">Wanna Play Again?</button>
       </div>
+      <div class="game-row row-1"></div>
+      <div class="game-row row-2">
+        <div class="game-col2 row-3">
+          <div class="unmatched game-col2 row-4"></div>
+          <div class="unmatched game-col2 row-4"></div>
+          <div class="unmatched game-col2 row-4"></div>
+          <div class="unmatched game-col2 row-4"></div>
+          <div class="unmatched game-col2 row-4"></div>
+          <div class="unmatched game-col2 row-4"></div>
+          <div class="unmatched game-col2 row-4"></div>
+          <div class="unmatched game-col2 row-4"></div>
+          <div class="unmatched game-col2 row-4"></div>
+        </div>
+        <div class="game-col1 row-3" id="gameCards"></div>
+        <div class="game-col2 row-3">
+          <div class="unmatched game-col2 row-4"></div>
+          <div class="unmatched game-col2 row-4"></div>
+          <div class="unmatched game-col2 row-4"></div>
+          <div class="unmatched game-col2 row-4"></div>
+          <div class="unmatched game-col2 row-4"></div>
+          <div class="unmatched game-col2 row-4"></div>
+          <div class="unmatched game-col2 row-4"></div>
+          <div class="unmatched game-col2 row-4"></div>
+          <div class="unmatched game-col2 row-4"></div>
+        </div>
+      </div>
+      <div class="game-row row-1"></div>
     </main>
     <aside class="completed-container col-4">
       <div class="completed-header col-12">COMPLETED SETS</div>
-      <div class="completed-set col-4" id="BROWN">
-        <p class="col-12">Brown</p>
+      <div class="completed-set col-4" id="dark-purple">
+        <p class="col-12">Dark Purple Set</p>
         <div class="completed-card col-4"></div>
         <div class="completed-card col-4"></div>
       </div>

@@ -17,18 +17,18 @@ body{
   height: 10%;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(rgba(100, 100, 100, 0.3),
-                                    rgba(100, 100, 100, 0.05));
+  background-color: rgba(135,206,235, 0.2);
+  border-bottom: dashed 1px black;
 }
 
 header{
   text-align: center;
   font-size: 4rem;
   font-weight: bold;
-  color: crimson;
+  color: rgb(0,0,139);;
 }
 
-.game-row{
+.main-row{
   height: 90%;
 }
 
@@ -40,6 +40,13 @@ header{
   height: 100%;
   margin: auto;
   justify-content: center;
+}
+
+.cards-container{
+  background-image: url(../images/M_board.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .stats{
@@ -54,7 +61,7 @@ header{
   background-color: rgba(135,206,235, 0.2);
   border-bottom: dashed 1px black;
   border-top: dashed 1px black;
-  background-size: 25%;
+  background-size: 20%;
   background-position: left;
   background-repeat: no-repeat;
 }
@@ -128,11 +135,12 @@ p,
   justify-content: center;
   align-items: center;
   color: rgb(0,0,139);
-  background-color: rgba(135,206,235, 0.2);;
+  background-color: rgba(135,206,235, 0.2);
   border-bottom: dashed 1px black;
 }
 
 p{
+  font-size: 1.5rem;
   border-bottom: dashed 1px black;
 }
 
@@ -148,6 +156,15 @@ p{
   background-repeat: no-repeat;
   background-position: center;
   margin: auto;
+}
+
+.game-row{
+  /* background-color: tomato; */
+  width: 91.8%;
+  display: flex;
+  flex-wrap: nowrap;
+  position: relative;
+  left: 0.1%;
 }
 
 .win-modal{
@@ -225,7 +242,7 @@ p{
   background-image: url(../images/react-logo.png)
 }
 
-/* Based on 12 col's minus a little (8.33% would be exact 12 col) */
+/* Based on 12 columns minus a little (8.33% would be exact 12 col) */
 .col-1 {
   width: 8%;
 }
@@ -266,6 +283,36 @@ p{
   width: 96%;
 }
 
+.game-col1{
+  width: 73%;
+}
+
+.game-col2{
+  width: 13.5%;
+}
+
+.unmatched{
+  width: 100%;
+  margin: auto 0;
+}
+
+/* Based on the row height that fit the board */
+.row-1 {
+  height: 13.5%;
+}
+
+.row-2 {
+  height: 73%;
+}
+
+.row-3 {
+  height: 100%;
+}
+
+.row-4{
+  height: 11.08%;
+}
+
 .hidden {
   display: none;
 }
@@ -298,7 +345,7 @@ p{
       height: 90%;
     }
 
-    .game-row{
+    .main-row{
       display: flex;
       flex-wrap: wrap;
     }
