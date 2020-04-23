@@ -4,9 +4,7 @@ var cardContainerEle = document.getElementById("gameCards");
 var cards = [];
 var cardsFront = [];
 var cardsBack = [];
-var classNames = [  "css-logo" ,"docker-logo" ,"github-logo" ,
-                    "html-logo" ,"js-logo" ,"mysql-logo" ,
-                    "node-logo" ,"php-logo", "react-logo"
+var classNames = [
                   ]
 
 // Card matching mechanics
@@ -35,7 +33,7 @@ var resetButtonEle = document.getElementById("reset-button");
 /* ----------- function calls ----------- */
 createCards();
 shuffleCards();
-addCards();
+// addCards();
 
 /*----------- Event Listeners -----------*/
 // Event listener for a click on a card
