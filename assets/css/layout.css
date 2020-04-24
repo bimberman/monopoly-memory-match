@@ -1,0 +1,86 @@
+.completed-card.col-5{
+  height: 100%;
+}
+
+.completed-card.col-4{
+  height: 80%;
+}
+
+.completed-card.col-3{
+  height: 60%;
+}
+
+.completed-card.col-2{
+  height: 40%;
+}
+
+/* Based on 12 columns minus a little (8.33% would be exact 12 col) */
+.col-1 {
+  width: 8%;
+}
+.col-2 {
+  width: 16%;
+}
+.col-3 {
+  width: 24%;
+}
+
+.col-4 {
+  width: 32%;
+}
+.col-5 {
+  width: 40%;
+}
+.col-6 {
+  width: 48%;
+}
+
+.col-7 {
+  width: 56%;
+}
+.col-8 {
+  width: 64%;
+}
+.col-9 {
+  width: 72%;
+}
+
+.col-10 {
+  width: 80%;
+}
+.col-11 {
+  width: 88%;
+}
+.col-12 {
+  width: 96%;
+}
+
+.game-col1{
+  width: 73%;
+}
+
+.game-col2{
+  width: 13.5%;
+}
+
+.unmatched{
+  width: 100%;
+  margin: auto 0;
+}
+
+/* Based on the row height that fit the board */
+.row-1 {
+  height: 13.5%;
+}
+
+.row-2 {
+  height: 73%;
+}
+
+.row-3 {
+  height: 100%;
+}
+
+.row-4{
+  height: 11.08%;
+}

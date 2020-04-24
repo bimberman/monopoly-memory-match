@@ -1,20 +1,20 @@
 /* ----------- Global Variable declaration ----------- */
 //Game space
 var cardContainerEle = document.getElementById("gameCards");
+// Empty arrays to be filled with cards
 var cards = [];
 var cardsFront = [];
 var cardsBack = [];
-var pairSet = [ "card-front0", "card-front1", "card-front7",
-                  "card-front20", "card-front27", "card-front28"];
-var tripleSet = ["card-front3", "card-front4", "card-front5",
-                 "card-front6", "card-front8", "card-front9",
-                 "card-front11", "card-front12", "card-front13",
-                 "card-front14", "card-front15", "card-front16",
-                 "card-front18", "card-front19", "card-front21",
-                 "card-front22", "card-front23", "card-front24"]
-var quadSet = ["card-front2", "card-front10", "card-front17", "card-front26"];
+
+// All possible colors sets for the cards
+// var setColors = ["purple", "light-blue", "magenta",
+//                 "orange", "red", "yellow",
+//                 "green", "dark-blue", "utility", "train"];
+
+// Number of cards in the game
 var numOfCards = 28;
-var numOfCardsInSet;
+// How many cards are in the set of the first card clicked
+var cardsInSet;
 
 // Card matching mechanics
 var firstCardClicked;
@@ -28,6 +28,7 @@ var secondCardFront;
 var thirdCardFront;
 var fourthCardFront;
 
+// Rounds
 var maxRounds = 10;
 var rounds = 0;
 
@@ -46,7 +47,7 @@ var resetButtonEle = document.getElementById("reset-button");
 
 /* ----------- function calls ----------- */
 createCards();
-shuffleCards();
+//shuffleCards();
 addCards();
 
 /*----------- Event Listeners -----------*/
@@ -67,16 +68,17 @@ function handleClick(event){
   if (!firstCardClicked) {
     firstCardClicked = event.target;
     firstCardFront = firstCardClicked.previousElementSibling;
-    numOfCardsInSet = cardsInSet(firstCardFront.id);
+    cardsInSet = numOfCardsInSet(firstCardFront.getAttribute("data-set-color"));
   } else if (!secondCardClicked) {
     secondCardClicked = event.target;
     secondCardFront = secondCardClicked.previousElementSibling;
-    if (numOfCardsInSet===2){
+    if (cardsInSet===2){
       cardContainerEle.removeEventListener("click", handleClick);
-      if (match2(firstCardFront.id, secondCardFront.id)) {
-        resetRound();
+      if (matchCards(cardsInSet, firstCardFront.getAttribute("data-set-color"),
+                     secondCardFront.getAttribute("data-set-color"))) {
+        resetRound(cardsInSet);
       } else {
-        setTimeout(unsuccessfulMatch, 1500);
+        setTimeout(function(){unsuccessfulMatch(cardsInSet)}, 1500);
       }
     } else {
       return;
@@ -84,100 +86,129 @@ function handleClick(event){
   } else if (!thirdCardClicked) {
     thirdCardClicked = event.target;
     thirdCardFront = thirdCardClicked.previousElementSibling;
-    if (numOfCardsInSet === 3) {
+    if (cardsInSet === 3) {
       cardContainerEle.removeEventListener("click", handleClick);
-      if (match3(firstCardClicked.id, secondCardClicked.id, thirdCardClicked.id)) {
-        resetRound();
+      if (matchCards(cardsInSet, firstCardFront.getAttribute("data-set-color"),
+                      secondCardFront.getAttribute("data-set-color"),
+                      thirdCardFront.getAttribute("data-set-color"))) {
+        resetRound(cardsInSet);
       } else {
-        setTimeout(unsuccessfulMatch, 1500);
+        setTimeout(function(){unsuccessfulMatch(cardsInSet)}, 1500);
       }
-    } else if (numOfCardsInSet === 2){
-      cardContainerEle.removeEventListener("click", handleClick);
-      setTimeout(unsuccessfulMatch, 1500);
-      } else {
-      return;
     }
   } else if (!fourthCardClicked) {
     fourthCardClicked = event.target;
     fourthCardFront = fourthCardClicked.previousElementSibling;
 
-    if (cardsInSet() === 4) {
+    if (cardsInSet === 4) {
       cardContainerEle.removeEventListener("click", handleClick);
-      if (match4(firstCardClicked.id, secondCardClicked.id, thirdCardClicked.id, fourthCardClicked.id)) {
-        resetRound();
+      if (matchCards(cardsInSet, firstCardFront.getAttribute("data-set-color"),
+                      secondCardFront.getAttribute("data-set-color"),
+                      thirdCardFront.getAttribute("data-set-color"),
+                      fourthCardFront.getAttribute("data-set-color"))) {
+        resetRound(cardsInSet);
       } else {
-        setTimeout(unsuccessfulMatch, 1500);
+        setTimeout(function(){unsuccessfulMatch(cardsInSet)}, 1500);
       }
-    } else {
-
     }
   }
 }
 
-function cardsInSet(cardID){
+/* Evaluates the first card clicked to find
+   out which card set he is a part of */
+function numOfCardsInSet(cardSetColor){
 
-  if (!cardID){
-    return 0;
+  switch (cardSetColor){
+    case "purple": return 2;
+    case "light-blue": return 3;
+    case "magenta": return 3;
+    case "orange": return 3;
+    case "red": return 3;
+    case "yellow": return 3;
+    case "green": return 3;
+    case "dark-blue": return 2;
+    case "utility": return 2;
+    case "train": return 4;
   }
 
-  for (let cardIndex = 0; cardIndex < pairSet.length; cardIndex++){
-    if (cardID === pairSet[cardIndex]){
-      return 2;
+  return null;
+}
+
+/* check if there is a match between the cards in both
+   permutations for all sets of two */
+function matchCards(cardsInSet, card1SetColor, card2SetColor,
+                    card3SetColor, card4SetColor){
+
+  if (cardsInSet === 2){
+    if (card1SetColor && card2SetColor){
+      if (card1SetColor === card2SetColor){
+        return true;
+      }
+    }
+  } else if (cardsInSet === 3){
+    if (card1SetColor && card2SetColor && card3SetColor) {
+      if (card1SetColor === card2SetColor &&
+          card1SetColor === card3SetColor) {
+        return true;
+      }
+    }
+  } else if (cardsInSet === 4) {
+    if (card1SetColor && card2SetColor && card3SetColor && card4SetColor) {
+      if (card1SetColor === card2SetColor &&
+          card1SetColor === card3SetColor &&
+          card1SetColor === card4SetColor) {
+        return true;
+      }
     }
   }
 
-  for (let cardIndex = 0; cardIndex < quadSet.length; cardIndex++) {
-    if (cardID === quadSet[cardIndex]) {
-      return 4;
-    }
-  }
-
-  return 3;
+  return false;
 }
 
-function match2(cardID1, cardID2){
+/* In case of an unsuccessful match of cards restore
+   the game state to its original state before this round
+   (before the first click this round)*/
+function unsuccessfulMatch(cardsInSet){
 
-  if ((cardID1 === cardPairs[0] && cardID2 === cardPairs[1]) | (cardID1 === cardPairs[1] && cardID2 === cardPairs[0])){
-    return true;
+  switch (cardsInSet){
+    case 2:
+      firstCardClicked.classList.remove("hidden");
+      secondCardClicked.classList.remove("hidden");
+      firstCardClicked = null;
+      secondCardClicked = null;
+      break;
+    case 3:
+      firstCardClicked.classList.remove("hidden");
+      secondCardClicked.classList.remove("hidden");
+      thirdCardClicked.classList.remove("hidden");
+      firstCardClicked = null;
+      secondCardClicked = null;
+      thirdCardClicked = null;
+      break;
+    case 4:
+      firstCardClicked.classList.remove("hidden");
+      secondCardClicked.classList.remove("hidden");
+      thirdCardClicked.classList.remove("hidden");
+      fourthCardClicked.classList.remove("hidden");
+      firstCardClicked = null;
+      secondCardClicked = null;
+      thirdCardClicked = null;
+      fourthCardClicked = null;
+      break;
   }
-
-  if ((cardID1 === cardPairs[2] && cardID2 === cardPairs[3]) | (cardID1 === cardPairs[3] && cardID2 === cardPairs[2])) {
-    return true;
-  }
-
-  if ((cardID1 === cardPairs[4] && cardID2 === cardPairs[5]) | (cardID1 === cardPairs[5] && cardID2 === cardPairs[4])) {
-    return true;
-  }
-}
-
-function match3(cardID1, cardID2, cardID3) {
-
-  // if(card1)
-
-}
-
-function match4(cardID1, cardID2, cardID3, cardID4) {
-
-  // if(card1)
-
-}
-
-function unsuccessfulMatch(){
-  firstCardClicked.classList.remove("hidden");
-  secondCardClicked.classList.remove("hidden");
   cardContainerEle.addEventListener("click", handleClick);
-  firstCardClicked = null;
-  secondCardClicked = null;
   attempts++;
   displayStats();
 }
 
+// Change the text in the relevant stats boxes
 function displayStats(){
   gamesPlayedEle.textContent = gamesPlayed;
   attemptsEle.textContent = attempts;
   accuracyEle.textContent = calculateAccuracy(rounds, attempts);
 }
 
+// Calculates the accuracy of the player's matching
 function calculateAccuracy(rounds, attempts){
   if(!attempts){
     return "0%";
@@ -185,10 +216,38 @@ function calculateAccuracy(rounds, attempts){
   return `${Math.floor((rounds / attempts) * 100)}%`;
 }
 
-function resetRound(){
+/* After a successful match resets the variables from this round
+   to prepare for the next round */
+function resetRound(cardsInSet){
+  switch (cardsInSet) {
+    case 2:
+      firstCardFront.classList.add("hidden");
+      secondCardFront.classList.add("hidden");
+      firstCardClicked = null;
+      secondCardClicked = null;
+      break;
+    case 3:
+      firstCardFront.classList.add("hidden");
+      secondCardFront.classList.add("hidden");
+      thirdCardFront.classList.add("hidden");
+      firstCardClicked = null;
+      secondCardClicked = null;
+      thirdCardClicked = null;
+      break;
+    case 4:
+      firstCardFront.classList.add("hidden");
+      secondCardFront.classList.add("hidden");
+      thirdCardFront.classList.add("hidden");
+      fourthCardFront.classList.add("hidden");
+      firstCardClicked = null;
+      secondCardClicked = null;
+      thirdCardClicked = null;
+      fourthCardClicked = null;
+      break;
+  }
+
   cardContainerEle.addEventListener("click", handleClick);
-  firstCardClicked = null;
-  secondCardClicked = null;
+
   rounds++;
   attempts++;
   displayStats();
@@ -197,6 +256,8 @@ function resetRound(){
   }
 }
 
+// Restores the game state to an original blank game with no inputs
+// Also increases the game count by one
 function resetGame(){
   gamesPlayed++;
   rounds = 0;
@@ -209,6 +270,7 @@ function resetGame(){
   winModalEle.classList.add("hidden");
 }
 
+// Restores the back of the cards (un-hides them)
 function resetCards(){
   let cardBacks = cardContainerEle.getElementsByClassName("card-back");
   for (let cardBacksIndex = 0; cardBacksIndex < cardBacks.length; cardBacksIndex++){
@@ -216,6 +278,7 @@ function resetCards(){
   }
 }
 
+// Shuffle the cards
 function shuffleCards(){
   let currentIndex = cards.length;
   let tempValue;
@@ -231,6 +294,7 @@ function shuffleCards(){
   }
 }
 
+// Removes the cards from their parent container
 function removeCards(){
   while (cardContainerEle.firstElementChild) {
     if (cardContainerEle.lastElementChild.id === "win-modal") {
@@ -240,6 +304,7 @@ function removeCards(){
   }
 }
 
+// Adds cards to their parent container
 function addCards(){
   if(!cards){
     console.log("No cards in the collection");
@@ -251,12 +316,15 @@ function addCards(){
   }
 }
 
+// Creates cards to be matched
 function createCards(){
   if(cards || cardsFront || cardsBack){
     cards = [];
     cardsFront = [];
     cardsBack = [];
   }
+
+  let setColor;
 
   for(let cardIndex = 0; cardIndex<numOfCards ; cardIndex++){
     cards.push(document.createElement("div"));
@@ -269,6 +337,21 @@ function createCards(){
     cardsFront[cardIndex].classList.add("card-front", `card-front${cardIndex}`);
     cardsFront[cardIndex].style.backgroundImage = `url(./assets/images/slim_cards/slim_card_${cardIndex}.jpg)`;
     cardsFront[cardIndex].setAttribute("id", `card-front${cardIndex}`);
+
+    switch (cardIndex){
+      case 0: case 1: setColor="purple"; break;
+      case 3: case 4: case 5: setColor = "light-blue"; break;
+      case 6: case 8: case 9: setColor = "magenta"; break;
+      case 11: case 12: case 13: setColor = "orange"; break;
+      case 14: case 15: case 16: setColor = "red"; break;
+      case 18: case 19: case 21: setColor = "yellow"; break;
+      case 22: case 23: case 24: setColor = "green"; break;
+      case 26: case 27: setColor = "dark-blue"; break;
+      case 2: case 10: case 17: case 25: setColor = "train"; break;
+      case 7: case 20: setColor = "utility"; break;
+    }
+
+    cardsFront[cardIndex].setAttribute("data-set-color", setColor);
 
     cardsBack[cardIndex].classList.add("card-back");
     cardsBack[cardIndex].setAttribute("id", `card-back${cardIndex}`);
