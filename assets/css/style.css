@@ -5,6 +5,9 @@ body{
   background-position: center;
   background-repeat: no-repeat;
   margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .row{
@@ -14,18 +17,21 @@ body{
 }
 
 .header-row{
+  box-sizing: border-box;
   height: 10%;
+  width: 60%;
   justify-content: center;
   align-items: center;
-  background-color: rgba(135,206,235, 0.2);
-  border-bottom: dashed 1px black;
+  background-image: linear-gradient(rgba(204,37,44, 1), rgba(119,78,76, 1));
+  border: solid 5px white;
 }
 
 header{
   text-align: center;
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: bold;
-  color: rgb(0,0,139);;
+  color: white;
+  font-family: monopoly, sans-serif;
 }
 
 .main-row{
@@ -43,6 +49,8 @@ header{
 }
 
 .cards-container{
+  display: flex;
+  flex-wrap: wrap;
   background-image: url(../images/M_board.jpg);
   background-size: contain;
   background-repeat: no-repeat;
@@ -57,46 +65,17 @@ header{
   align-items: center;
   text-align: center;
   margin: auto;
-  color: rgb(0,0,139);
-  background-color: rgba(135,206,235, 0.2);
-  border-bottom: dashed 1px black;
-  border-top: dashed 1px black;
+  color: white;
+  background-color: rgba(164,40,40, 0.75);
+  border: solid 2.5px white;
   background-size: 20%;
   background-position: left;
   background-repeat: no-repeat;
 }
 
-#stats{
-  background-image: url(../images/500USD.png);
-}
-
-#games-played-text{
-  background-image: url(../images/100USD.png);
-}
-
-#games-played{
-  background-image: url(../images/50USD.png);
-}
-
-#attempts-text{
-  background-image: url(../images/20USD.png);
-}
-
-#attempts{
-  background-image: url(../images/10USD.png);
-}
-
-#accuracy-text{
-  background-image: url(../images/5USD.png);
-}
-
-#accuracy{
-  background-image: url(../images/1USD.png);
-}
-
 .card{
-  height: 30%;
-  background-image: url(../images/lfz-card.jpg);
+  height: 20%;
+  /* background-image: url(../images/slim_cards/chance.jpeg); */
   background-size: 100%;
   background-repeat: no-repeat;
   margin: auto;
@@ -112,50 +91,93 @@ header{
   text-align: center;
   margin: auto;
   flex-wrap: wrap;
-  border: dashed 1px black;
+  border: solid 2.5px white;
+  background-color: rgba(210,234,220, 1);
 }
 
 .card-front, .card-back {
+  box-sizing: border-box;
   height: 100%;
   width: 100%;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   position: absolute;
+  border: solid black 2px;
 }
 
-.completed-card{
+.completed-cards{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
   height: 70%;
 }
 
 p,
 .completed-header{
   display: flex;
-  margin: auto;
   justify-content: center;
   align-items: center;
-  color: rgb(0,0,139);
-  background-color: rgba(135,206,235, 0.2);
-  border-bottom: dashed 1px black;
+  color: white;
+  background-color: rgba(164,40,40, 0.75);
+  border: solid 2.5px white;
 }
 
 p{
   font-size: 1.5rem;
-  border-bottom: dashed 1px black;
+  margin: 0;
 }
 
 .completed-header {
   font-size: 2rem;
   height: 10%;
-  border-top: dashed 1px black;
+}
+
+#light-blue{
+  background-color: rgb(142, 213, 228);
+}
+
+#magenta{
+  background-color: rgba(220,28,139, 1);
+}
+
+#orange{
+  background-color: rgba(255,127,0, 1);
+}
+
+#red{
+  background-color: rgba(255,0,0, 1);
+}
+
+#yellow{
+  background-color: rgb(233, 233, 3);
+}
+
+#green{
+  background-color: rgb(24, 150, 76);
+}
+
+#dark-blue{
+  background-color: rgb(9, 80, 160);
+}
+
+#railroad{
+  background-color: rgb(0, 0, 0);
+}
+
+#utility{
+  background-color: rgb(83, 74, 74);
 }
 
 .completed-card{
-  background-image: url(../images/lfz-card.jpg);
+  background-image: url(../images/slim_cards/slim_card_chance.jpg);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   margin: auto;
+  border: solid black 2px;
 }
 
 .game-row{
@@ -167,15 +189,23 @@ p{
   left: 0.1%;
 }
 
+#gameCards{
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .win-modal{
   position: fixed;
   display: flex;
   flex-wrap: wrap;
-  top: 35%;
+  top: 15%;
   left: 25%;
   width: 50%;
-  height: 30%;
-  background-color: rgb(89,172,244);
+  height: 60%;
+  background-image: url(../images/Win.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   color: white;
   text-align: center;
   align-items: center;
@@ -195,122 +225,7 @@ p{
 
 /* Generic card back */
 .card-back {
-  background-image: url(../images/lfz-card.jpg)
-}
-
-/* CSS */
-.css-logo {
-  background-image: url(../images/css-logo.png)
-}
-
-/* docker */
-.docker-logo {
-  background-image: url(../images/docker-logo.jpg)
-}
-
-/* gitHub */
-.github-logo {
-  background-image: url(../images/gitHub-logo.png)
-}
-
-/* HTML */
-.html-logo {
-  background-image: url(../images/html-logo.png)
-}
-/* JS */
-.js-logo {
-  background-image: url(../images/js-logo.png)
-}
-
-/* MySQL */
-.mysql-logo {
-  background-image: url(../images/mysql-logo.jpg)
-}
-
-/* node */
-.node-logo {
-  background-image: url(../images/node-logo.png)
-}
-
-/* PHP */
-.php-logo {
-  background-image: url(../images/php-logo.jpeg)
-}
-
-/* React */
-.react-logo {
-  background-image: url(../images/react-logo.png)
-}
-
-/* Based on 12 columns minus a little (8.33% would be exact 12 col) */
-.col-1 {
-  width: 8%;
-}
-.col-2 {
-  width: 16%;
-}
-.col-3 {
-  width: 24%;
-}
-
-.col-4 {
-  width: 32%;
-}
-.col-5 {
-  width: 40%;
-}
-.col-6 {
-  width: 48%;
-}
-
-.col-7 {
-  width: 56%;
-}
-.col-8 {
-  width: 64%;
-}
-.col-9 {
-  width: 72%;
-}
-
-.col-10 {
-  width: 80%;
-}
-.col-11 {
-  width: 88%;
-}
-.col-12 {
-  width: 96%;
-}
-
-.game-col1{
-  width: 73%;
-}
-
-.game-col2{
-  width: 13.5%;
-}
-
-.unmatched{
-  width: 100%;
-  margin: auto 0;
-}
-
-/* Based on the row height that fit the board */
-.row-1 {
-  height: 13.5%;
-}
-
-.row-2 {
-  height: 73%;
-}
-
-.row-3 {
-  height: 100%;
-}
-
-.row-4{
-  height: 11.08%;
+  background-image: url(../images/slim_cards/slim_card_chance.jpg)
 }
 
 .hidden {
