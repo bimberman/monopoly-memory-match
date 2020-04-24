@@ -5,6 +5,9 @@ body{
   background-position: center;
   background-repeat: no-repeat;
   margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .row{
@@ -14,18 +17,21 @@ body{
 }
 
 .header-row{
+  box-sizing: border-box;
   height: 10%;
+  width: 60%;
   justify-content: center;
   align-items: center;
-  background-color: rgba(135,206,235, 0.2);
-  border-bottom: dashed 1px black;
+  background-image: linear-gradient(rgba(204,37,44, 1), rgba(119,78,76, 1));
+  border: solid 5px white;
 }
 
 header{
   text-align: center;
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: bold;
-  color: rgb(0,0,139);;
+  color: white;
+  font-family: monopoly, sans-serif;
 }
 
 .main-row{
@@ -59,10 +65,9 @@ header{
   align-items: center;
   text-align: center;
   margin: auto;
-  color: rgb(0,0,139);
-  background-color: rgba(135,206,235, 0.2);
-  border-bottom: dashed 1px black;
-  border-top: dashed 1px black;
+  color: white;
+  background-color: rgba(164,40,40, 0.75);
+  border: solid 2.5px white;
   background-size: 20%;
   background-position: left;
   background-repeat: no-repeat;
@@ -114,7 +119,8 @@ header{
   text-align: center;
   margin: auto;
   flex-wrap: wrap;
-  border: dashed 1px black;
+  border: solid 2.5px white;
+  background-color: rgba(210,234,220, 1);
 }
 
 .card-front, .card-back {
@@ -136,20 +142,34 @@ p,
   margin: auto;
   justify-content: center;
   align-items: center;
-  color: rgb(0,0,139);
-  background-color: rgba(135,206,235, 0.2);
-  border-bottom: dashed 1px black;
+  color: white;
+  background-color: rgba(164,40,40, 0.75);
+  border: solid 2.5px white;
 }
 
 p{
   font-size: 1.5rem;
-  border-bottom: dashed 1px black;
 }
 
 .completed-header {
   font-size: 2rem;
   height: 10%;
-  border-top: dashed 1px black;
+}
+
+#dark-purple{
+  background-color: rgba(62,20,132, 1);
+}
+
+#light-blue{
+  background-color: rgb(142, 213, 228);
+}
+
+#magenta{
+  background-color: rgba(220,28,139, 1);
+}
+
+#orange{
+  background-color: rgba(255,127,0, 1);
 }
 
 .completed-card{
