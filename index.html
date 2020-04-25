@@ -4,16 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./assets/css/stats.css">
-  <link rel="stylesheet" href="./assets/css/cardfront.css">
+  <link rel="stylesheet" href="./assets/css/completed-sets.css">
   <link rel="stylesheet" href="./assets/css/layout.css">
   <link rel="stylesheet" href="./assets/css/fonts.css">
   <link rel="stylesheet" href="./assets/css/style.css">
   <title>Memory Match</title>
 </head>
 <body>
-  <div class="row header-row header-row">
-    <header>MONOPOLY MEMORY MATCH</header>
+  <div class="tutorial-model" id="tutorial-model">
+    <h2>Instructions:</h2>
+    <h3>To play simply press on a card to reveal its front face, <br>
+       then try to find the other cards in it's set.<br>
+      If you find all members of a set, then they will appear in the completed sets section</h3>
+    <img src="./assets/tutorial/tutorial1.gif" alt="tutorial 1" srcset="how to play the game" class="tutorial">
+    <button id="tutorial-button">Wanna Play?</button>
   </div>
+  <div class="row header-row"></div>
   <div class="row main-row">
     <aside class="stats-container col-2">
       <div class="stats col-10" id="stats">STATS</div>
@@ -25,8 +31,8 @@
       <div class="stats col-10" id="accuracy">0%</div>
     </aside>
     <main class="cards-container col-6">
-      <div class="win-modal hidden" id="win-modal">
-        Congratulations, You Have Won!
+      <div class="win-model hidden" id="win-model">
+        <h1 class="win-model-text">Congratulations, you WON!</h1>
         <button id="reset-button">Wanna Play Again?</button>
       </div>
       <div class="game-row row-1"></div>
@@ -62,88 +68,88 @@
       <div class="completed-set col-4">
         <p class="col-12" id="purple">Dark Purple Set</p>
         <div class="completed-cards">
-          <div class="completed-card col-5"></div>
-          <div class="completed-card col-5"></div>
+          <div class="completed-card col-3 purple hidden" id="mediterranean-card"></div>
+          <div class="completed-card col-3 purple hidden" id="baltic-card"></div>
         </div>
       </div>
       <div class="completed-set col-4">
         <p class="col-12" id="light-blue">Light Blue Set</p>
           <div class="completed-cards">
-            <div class="completed-card col-3"></div>
-            <div class="completed-card col-3"></div>
-            <div class="completed-card col-3"></div>
+            <div class="completed-card col-3 light-blue hidden" id="oriental-card"></div>
+            <div class="completed-card col-3 light-blue hidden" id="vermont-card"></div>
+            <div class="completed-card col-3 light-blue hidden" id="connecticut-card"></div>
           </div>
         </div>
       <div class="completed-set col-4">
         <p class="col-12" id="magenta">Magenta Set</p>
         <div class="completed-cards">
-          <div class="completed-card col-3"></div>
-          <div class="completed-card col-3"></div>
-          <div class="completed-card col-3"></div>
+          <div class="completed-card col-3 magenta hidden" id="charles-card"></div>
+          <div class="completed-card col-3 magenta hidden" id="states-card"></div>
+          <div class="completed-card col-3 magenta hidden" id="virginia-card"></div>
         </div>
       </div>
       <div class="completed-set col-4">
         <p class="col-12" id="orange">Orange Set</p>
         <div class="completed-cards">
-          <div class="completed-card col-3"></div>
-          <div class="completed-card col-3"></div>
-          <div class="completed-card col-3"></div>
+          <div class="completed-card col-3 orange hidden" id="james-card"></div>
+          <div class="completed-card col-3 orange hidden" id="tennessee-card"></div>
+          <div class="completed-card col-3 orange hidden" id="new-york-card"></div>
         </div>
       </div>
       <div class="completed-set col-4">
         <p class="col-12" id="red">Red Set</p>
         <div class="completed-cards">
-          <div class="completed-card col-3"></div>
-          <div class="completed-card col-3"></div>
-          <div class="completed-card col-3"></div>
+          <div class="completed-card col-3 red hidden" id="kentucky-card"></div>
+          <div class="completed-card col-3 red hidden" id="indiana-card"></div>
+          <div class="completed-card col-3 red hidden" id="illinois-card"></div>
         </div>
       </div>
       <div class="completed-set col-4">
         <p class="col-12" id="yellow">Yellow Set</p>
         <div class="completed-cards">
-          <div class="completed-card col-3"></div>
-          <div class="completed-card col-3"></div>
-          <div class="completed-card col-3"></div>
+          <div class="completed-card col-3 yellow hidden" id="atlantic-card"></div>
+          <div class="completed-card col-3 yellow hidden" id="ventnor-card"></div>
+          <div class="completed-card col-3 yellow hidden" id="marvin-card"></div>
         </div>
       </div>
       <div class="completed-set col-4">
         <p class="col-12" id="green">Green Set</p>
         <div class="completed-cards">
-          <div class="completed-card col-3"></div>
-          <div class="completed-card col-3"></div>
-          <div class="completed-card col-3"></div>
+          <div class="completed-card col-3 green hidden" id="pacific-card"></div>
+          <div class="completed-card col-3 green hidden" id="carolina-card"></div>
+          <div class="completed-card col-3 green hidden" id="pennsylvania-card"></div>
         </div>
       </div>
       <div class="completed-set col-4">
         <p class="col-12" id="dark-blue">Dark Blue Set</p>
         <div class="completed-cards">
-          <div class="completed-card col-5"></div>
-          <div class="completed-card col-5"></div>
+          <div class="completed-card col-3 dark-blue hidden" id="park-card"></div>
+          <div class="completed-card col-3 dark-blue hidden" id="boardwalk-card"></div>
         </div>
       </div>
       <div class="completed-set col-4">
         <p class="col-12" id="railroad">Railroad Set</p>
         <div class="completed-cards">
-          <div class="completed-card col-2"></div>
-          <div class="completed-card col-2"></div>
-          <div class="completed-card col-2"></div>
-          <div class="completed-card col-2"></div>
+          <div class="completed-card col-2 train hidden" id="train1-card"></div>
+          <div class="completed-card col-2 train hidden" id="train2-card"></div>
+          <div class="completed-card col-2 train hidden" id="train3-card"></div>
+          <div class="completed-card col-2 train hidden" id="train4-card"></div>
         </div>
       </div>
       <div class="completed-set col-4">
         <p class="col-12" id="utility">Utilities Set</p>
         <div class="completed-cards">
-          <div class="completed-card col-5"></div>
-          <div class="completed-card col-5"></div>
+          <div class="completed-card col-3 utility hidden" id="electric-card"></div>
+          <div class="completed-card col-3 utility hidden" id="water-card"></div>
         </div>
       </div>
       <div class="completed-set col-8">
         <p class="col-12">Community Chest</p>
         <div class="completed-cards">
-          <div class="completed-card col-2"></div>
-          <div class="completed-card col-2"></div>
-          <div class="completed-card col-2"></div>
-          <div class="completed-card col-2"></div>
+          <div class="completed-card col-2 hidden"></div>
+          <div class="completed-card col-2 hidden"></div>
+          <div class="completed-card col-2 hidden"></div>
+          <div class="completed-card col-2 hidden"></div>
         </div>
       </div>
     </aside>
