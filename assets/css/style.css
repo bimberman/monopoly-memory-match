@@ -2,12 +2,49 @@ body{
   height: 97vh;
   background-image: url(../images/background.jpg);
   background-size: 100%;
-  background-position: center;
+  /* background-position: center; */
   background-repeat: no-repeat;
   margin: auto;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.tutorial-model{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-image: url(../images/background.jpg);
+  background-size: 100%;
+  /* background-position: center; */
+  background-repeat: no-repeat;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  justify-items: auto;
+  flex-wrap: wrap;
+  flex-direction: column;
+  z-index: 1;
+}
+
+h2{
+  font-size: 4rem;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+}
+
+h3{
+  width: 100%;
+  font-size: 3rem;
+  margin: auto;
+  text-align: center;
+}
+
+.tutorial{
+  width: 30%;
+  height: 60%;
+  margin: auto;
 }
 
 .row{
@@ -17,25 +54,21 @@ body{
 }
 
 .header-row{
-  box-sizing: border-box;
-  height: 10%;
+  box-sizing: content-box;
+  height: 20%;
   width: 60%;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(rgba(204,37,44, 1), rgba(119,78,76, 1));
-  border: solid 5px white;
-}
-
-header{
-  text-align: center;
-  font-size: 3.5rem;
-  font-weight: bold;
-  color: white;
-  font-family: monopoly, sans-serif;
+  /* background-image: linear-gradient(rgba(204,37,44, 1), rgba(119,78,76, 1)); */
+  /* border: solid 5px white; */
+  background-image: url(../images/header.png);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .main-row{
-  height: 90%;
+  height: 80%;
 }
 
 .stats-container,
@@ -61,6 +94,7 @@ header{
   display: flex;
   height: 10%;
   font-size: 2rem;
+  font-family: monopoly, sans-serif;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -84,8 +118,9 @@ header{
 
 .completed-set{
   display: flex;
-  height: 18%;
+  height: 20%;
   font-size: 2rem;
+  font-family: monopoly, sans-serif;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -123,6 +158,7 @@ p,
   color: white;
   background-color: rgba(164,40,40, 0.75);
   border: solid 2.5px white;
+  font-family: monopoly, sans-serif;
 }
 
 p{
@@ -135,44 +171,7 @@ p{
   height: 10%;
 }
 
-#light-blue{
-  background-color: rgb(142, 213, 228);
-}
-
-#magenta{
-  background-color: rgba(220,28,139, 1);
-}
-
-#orange{
-  background-color: rgba(255,127,0, 1);
-}
-
-#red{
-  background-color: rgba(255,0,0, 1);
-}
-
-#yellow{
-  background-color: rgb(233, 233, 3);
-}
-
-#green{
-  background-color: rgb(24, 150, 76);
-}
-
-#dark-blue{
-  background-color: rgb(9, 80, 160);
-}
-
-#railroad{
-  background-color: rgb(0, 0, 0);
-}
-
-#utility{
-  background-color: rgb(83, 74, 74);
-}
-
 .completed-card{
-  background-image: url(../images/slim_cards/slim_card_chance.jpg);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -182,7 +181,7 @@ p{
 
 .game-row{
   /* background-color: tomato; */
-  width: 91.8%;
+  width: 81.5%;
   display: flex;
   flex-wrap: nowrap;
   position: relative;
@@ -192,9 +191,10 @@ p{
 #gameCards{
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
-.win-modal{
+.win-model{
   position: fixed;
   display: flex;
   flex-wrap: wrap;
@@ -206,21 +206,39 @@ p{
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  color: white;
-  text-align: center;
+  color: rgba(164,40,40, 0.75);
+  /* text-align: center; */
   align-items: center;
   justify-content: center;
   font-size: 3rem;
   z-index: 1;
 }
 
+.win-model-text{
+  background: linear-gradient(0.25turn, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+  font-size: 4rem;
+}
+
 #reset-button{
-  background-color: white;
-  color: rgb(89,172,244);
+  background-image: linear-gradient(rgba(204,37,44, 1), rgba(119,78,76, 1));
+  border: solid 2.5px white;
+  color: white;
   width: 50%;
+  height: 12%;
   font-size: 3rem;
-  border: solid 0.5px blue;
+  /* border: solid 0.5px blue; */
   border-radius: 7px;
+}
+
+#tutorial-button{
+  background-image: linear-gradient(rgba(204,37,44, 1), rgba(119,78,76, 1));
+  border: solid 2.5px white;
+  color: white;
+  width: 20%;
+  height: 8%;
+  font-size: 3rem;
+  border-radius: 7px;
+  margin: auto;
 }
 
 /* Generic card back */
@@ -229,6 +247,7 @@ p{
 }
 
 .hidden {
+  /* visibility: hidden; */
   display: none;
 }
 
@@ -274,7 +293,7 @@ p{
       margin-top: 15%;
     }
 
-    .win-modal{
+    .win-model{
       font-size: 1rem;
     }
 
@@ -298,7 +317,7 @@ p{
       height: 12%;
     }
 
-    .win-modal{
+    .win-model{
       font-size: 1rem;
     }
 
@@ -333,7 +352,7 @@ p{
       margin-top: 25%;
     }
 
-    .win-modal{
+    .win-model{
       font-size: 2rem;
     }
 
@@ -357,7 +376,7 @@ p{
       height: 25%;
     }
 
-    .win-modal{
+    .win-model{
       font-size: 2rem;
     }
 

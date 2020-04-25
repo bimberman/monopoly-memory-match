@@ -6,11 +6,6 @@ var cards = [];
 var cardsFront = [];
 var cardsBack = [];
 
-// All possible colors sets for the cards
-// var setColors = ["purple", "light-blue", "magenta",
-//                 "orange", "red", "yellow",
-//                 "green", "dark-blue", "utility", "train"];
-
 // Number of cards in the game
 var numOfCards = 28;
 // How many cards are in the set of the first card clicked
@@ -32,29 +27,53 @@ var fourthCardFront;
 var maxRounds = 10;
 var rounds = 0;
 
-// The modal which will inform the user they have won
-var winModalEle = document.getElementById("win-modal");
+// The model which will inform the user they have won
+var winModelEle = document.getElementById("win-model");
 var attempts = 0;
 var gamesPlayed = 0;
+
+// The tutorial model
+var tutorialModalEle = document.getElementById("tutorial-model");
 
 // Stats column elements
 var gamesPlayedEle = document.getElementById("games-played");
 var attemptsEle = document.getElementById("attempts");
 var accuracyEle = document.getElementById("accuracy");
 
+// Completed sets column
+var setColors = document.getElementsByClassName("completed-card");
+
 // Game reset mechanics
 var resetButtonEle = document.getElementById("reset-button");
 
+// Hide the tutorial model
+var tutorialButtonEle = document.getElementById("tutorial-button");
+
+const colorOptions = {
+  "purple": 2,
+  "light-blue": 3,
+  "magenta": 3,
+  "orange": 3,
+  "red": 3,
+  "yellow": 3,
+  "green": 3,
+  "dark-blue": 2,
+  "utility": 2,
+  "train": 4
+}
+
 /* ----------- function calls ----------- */
 createCards();
-//shuffleCards();
+// shuffleCards();
 addCards();
 
 /*----------- Event Listeners -----------*/
 // Event listener for a click on a card
 cardContainerEle.addEventListener("click", handleClick);
-//Event listener to reset the game
+// Event listener to reset the game
 resetButtonEle.addEventListener("click", resetGame);
+// Event listener to hide the model
+tutorialButtonEle.addEventListener("click", function () { fade(tutorialModalEle)})
 
 /*----------- Functions -----------*/
 // Handles the click on the cards
@@ -65,25 +84,42 @@ function handleClick(event){
   }
 
   event.target.classList.add("hidden");
+  // check how many cards were clicked prior to this card
   if (!firstCardClicked) {
+    // No card was clicked before this one
     firstCardClicked = event.target;
     firstCardFront = firstCardClicked.previousElementSibling;
     cardsInSet = numOfCardsInSet(firstCardFront.getAttribute("data-set-color"));
   } else if (!secondCardClicked) {
+    // Only one card was clicked before this one
     secondCardClicked = event.target;
     secondCardFront = secondCardClicked.previousElementSibling;
+    // check if there are 2 cards in a set
     if (cardsInSet===2){
+      // Disables more clicks until check is complete
       cardContainerEle.removeEventListener("click", handleClick);
-      if (matchCards(cardsInSet, firstCardFront.getAttribute("data-set-color"),
+      // checks if both cards are part of the same set
+      if (matchCards(cardsInSet,
+                     firstCardFront.getAttribute("data-set-color"),
                      secondCardFront.getAttribute("data-set-color"))) {
-        resetRound(cardsInSet);
+        setTimeout(function(){resetRound(cardsInSet)}, 1500);
+        showCompletedSet(firstCardFront.getAttribute("data-set-color"));
       } else {
         setTimeout(function(){unsuccessfulMatch(cardsInSet)}, 1500);
       }
-    } else {
+    } else if (matchCards(2,
+               firstCardFront.getAttribute("data-set-color"),
+               secondCardFront.getAttribute("data-set-color"))) {
+      // The first card clicked might not be part of a set of two cards
+      /* This block checks to see if the two cards clicked are part of the
+         same set regardless of their set size */
       return;
+    } else {
+      cardContainerEle.removeEventListener("click", handleClick);
+      setTimeout(function () { unsuccessfulMatch(2) }, 1500);
     }
   } else if (!thirdCardClicked) {
+    // Only two card were clicked before this one
     thirdCardClicked = event.target;
     thirdCardFront = thirdCardClicked.previousElementSibling;
     if (cardsInSet === 3) {
@@ -91,12 +127,25 @@ function handleClick(event){
       if (matchCards(cardsInSet, firstCardFront.getAttribute("data-set-color"),
                       secondCardFront.getAttribute("data-set-color"),
                       thirdCardFront.getAttribute("data-set-color"))) {
-        resetRound(cardsInSet);
+        setTimeout(function () { resetRound(cardsInSet) }, 1500);
+        showCompletedSet(firstCardFront.getAttribute("data-set-color"));
       } else {
         setTimeout(function(){unsuccessfulMatch(cardsInSet)}, 1500);
       }
+    } else if (matchCards(3,
+      firstCardFront.getAttribute("data-set-color"),
+      secondCardFront.getAttribute("data-set-color"),
+      thirdCardFront.getAttribute("data-set-color"))) {
+      // The first card clicked might not be part of a set of two cards
+      /* This block checks to see if the two cards clicked are part of the
+         same set regardless of their set size */
+      return;
+    } else {
+      cardContainerEle.removeEventListener("click", handleClick);
+      setTimeout(function () { unsuccessfulMatch(3) }, 1500);
     }
   } else if (!fourthCardClicked) {
+    // Only three card were clicked before this one
     fourthCardClicked = event.target;
     fourthCardFront = fourthCardClicked.previousElementSibling;
 
@@ -106,7 +155,8 @@ function handleClick(event){
                       secondCardFront.getAttribute("data-set-color"),
                       thirdCardFront.getAttribute("data-set-color"),
                       fourthCardFront.getAttribute("data-set-color"))) {
-        resetRound(cardsInSet);
+        setTimeout(function () { resetRound(cardsInSet) }, 1500);
+        showCompletedSet(firstCardFront.getAttribute("data-set-color"));
       } else {
         setTimeout(function(){unsuccessfulMatch(cardsInSet)}, 1500);
       }
@@ -114,63 +164,28 @@ function handleClick(event){
   }
 }
 
-/* Evaluates the first card clicked to find
-   out which card set he is a part of */
-function numOfCardsInSet(cardSetColor){
+function hideCompletedSets(){
+  var setElements = document.getElementsByClassName("completed-card");
 
-  switch (cardSetColor){
-    case "purple": return 2;
-    case "light-blue": return 3;
-    case "magenta": return 3;
-    case "orange": return 3;
-    case "red": return 3;
-    case "yellow": return 3;
-    case "green": return 3;
-    case "dark-blue": return 2;
-    case "utility": return 2;
-    case "train": return 4;
+  for (let eleIndex = 0; eleIndex < setElements.length; eleIndex++) {
+    setElements[eleIndex].classList.add("hidden");
   }
-
-  return null;
 }
 
-/* check if there is a match between the cards in both
-   permutations for all sets of two */
-function matchCards(cardsInSet, card1SetColor, card2SetColor,
-                    card3SetColor, card4SetColor){
+function showCompletedSet(setColor) {
+  var setElements = document.getElementsByClassName(setColor);
 
-  if (cardsInSet === 2){
-    if (card1SetColor && card2SetColor){
-      if (card1SetColor === card2SetColor){
-        return true;
-      }
-    }
-  } else if (cardsInSet === 3){
-    if (card1SetColor && card2SetColor && card3SetColor) {
-      if (card1SetColor === card2SetColor &&
-          card1SetColor === card3SetColor) {
-        return true;
-      }
-    }
-  } else if (cardsInSet === 4) {
-    if (card1SetColor && card2SetColor && card3SetColor && card4SetColor) {
-      if (card1SetColor === card2SetColor &&
-          card1SetColor === card3SetColor &&
-          card1SetColor === card4SetColor) {
-        return true;
-      }
-    }
+  for(let eleIndex=0; eleIndex<setElements.length ; eleIndex++){
+    setElements[eleIndex].classList.remove("hidden");
   }
-
-  return false;
 }
 
 /* In case of an unsuccessful match of cards restore
    the game state to its original state before this round
    (before the first click this round)*/
-function unsuccessfulMatch(cardsInSet){
+function unsuccessfulMatch(num){
 
-  switch (cardsInSet){
+  switch (num){
     case 2:
       firstCardClicked.classList.remove("hidden");
       secondCardClicked.classList.remove("hidden");
@@ -252,8 +267,51 @@ function resetRound(cardsInSet){
   attempts++;
   displayStats();
   if (rounds === maxRounds) {
-    winModalEle.classList.remove("hidden");
+    winModelEle.classList.remove("hidden");
   }
+}
+
+
+/* Evaluates the first card clicked to find
+   out which card set he is a part of */
+function numOfCardsInSet(cardSetColor) {
+
+  if(colorOptions[cardSetColor]) {
+    return colorOptions[cardSetColor]
+  }
+
+  return null;
+}
+
+/* check if there is a match between the cards in both
+   permutations for all sets of two */
+function matchCards(cardsInSet, card1SetColor, card2SetColor,
+  card3SetColor, card4SetColor) {
+
+  if (cardsInSet === 2) {
+    if (card1SetColor && card2SetColor) {
+      if (card1SetColor === card2SetColor) {
+        return true;
+      }
+    }
+  } else if (cardsInSet === 3) {
+    if (card1SetColor && card2SetColor && card3SetColor) {
+      if (card1SetColor === card2SetColor &&
+        card1SetColor === card3SetColor) {
+        return true;
+      }
+    }
+  } else if (cardsInSet === 4) {
+    if (card1SetColor && card2SetColor && card3SetColor && card4SetColor) {
+      if (card1SetColor === card2SetColor &&
+        card1SetColor === card3SetColor &&
+        card1SetColor === card4SetColor) {
+        return true;
+      }
+    }
+  }
+
+  return false;
 }
 
 // Restores the game state to an original blank game with no inputs
@@ -267,14 +325,17 @@ function resetGame(){
   removeCards();
   shuffleCards();
   addCards();
-  winModalEle.classList.add("hidden");
+  hideCompletedSets();
+  winModelEle.classList.add("hidden");
 }
 
 // Restores the back of the cards (un-hides them)
 function resetCards(){
   let cardBacks = cardContainerEle.getElementsByClassName("card-back");
-  for (let cardBacksIndex = 0; cardBacksIndex < cardBacks.length; cardBacksIndex++){
-    cardBacks[cardBacksIndex].classList.remove("hidden");
+  let cardFronts = cardContainerEle.getElementsByClassName("card-front");
+  for (let cardIndex = 0; cardIndex < cardBacks.length; cardIndex++){
+    cardBacks[cardIndex].classList.remove("hidden");
+    cardFronts[cardIndex].classList.remove("hidden");
   }
 }
 
@@ -297,7 +358,7 @@ function shuffleCards(){
 // Removes the cards from their parent container
 function removeCards(){
   while (cardContainerEle.firstElementChild) {
-    if (cardContainerEle.lastElementChild.id === "win-modal") {
+    if (cardContainerEle.lastElementChild.id === "win-model") {
       break;
     }
     cardContainerEle.removeChild(cardContainerEle.lastChild);
@@ -359,4 +420,30 @@ function createCards(){
     cards[cardIndex].appendChild(cardsFront[cardIndex]);
     cards[cardIndex].appendChild(cardsBack[cardIndex]);
   }
+}
+
+function fade(element) {
+  var op = 1;  // initial opacity
+  var timer = setInterval(function () {
+    if (op <= 0.1) {
+      clearInterval(timer);
+      element.style.display = 'none';
+    }
+    element.style.opacity = op;
+    element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+    op -= op * 0.1;
+  }, 50);
+}
+
+function unfade(element) {
+  var op = 0.1;  // initial opacity
+  element.style.display = 'block';
+  var timer = setInterval(function () {
+    if (op >= 1) {
+      clearInterval(timer);
+    }
+    element.style.opacity = op;
+    element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+    op += op * 0.1;
+  }, 10);
 }
