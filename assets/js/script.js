@@ -392,7 +392,7 @@ function createCards(){
     cardsFront.push(document.createElement("div"));
     cardsBack.push(document.createElement("div"));
 
-    cards[cardIndex].classList.add("card", "game-col2");
+    cards[cardIndex].classList.add("card", "col-1");
     cards[cardIndex].setAttribute("id", `card${cardIndex}`)
 
     cardsFront[cardIndex].classList.add("card-front", `card-front${cardIndex}`);
