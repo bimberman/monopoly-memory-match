@@ -20,7 +20,6 @@ body{
   margin: auto;
   display: flex;
   justify-content: center;
-  justify-items: auto;
   flex-wrap: wrap;
   flex-direction: column;
   z-index: 1;
@@ -28,16 +27,33 @@ body{
 
 h2{
   font-size: 4rem;
-  margin: auto;
   text-align: center;
   width: 100%;
+  margin: 0;
 }
 
 h3{
   width: 100%;
-  font-size: 3rem;
+  font-size: 2rem;
   margin: auto;
   text-align: center;
+}
+
+li>h3{
+  width: 100%;
+  font-size: 2rem;
+  margin: auto;
+  text-align: left;
+}
+
+li{
+  width: 30%;
+  font-size: 2rem;
+  margin: auto;
+}
+
+.instructions{
+  width: 100%;
 }
 
 .tutorial{
@@ -77,7 +93,7 @@ h3{
   flex-wrap: wrap;
   height: 100%;
   margin: auto;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .cards-container{
@@ -103,7 +119,7 @@ h3{
 }
 
 .card{
-  height: 18%;
+  height: 21%;
   background-size: 100%;
   background-repeat: no-repeat;
   margin: auto;
@@ -156,7 +172,7 @@ p,
 }
 
 p{
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   margin: 0;
 }
 
@@ -166,11 +182,12 @@ p{
 }
 
 .completed-card{
+  box-sizing: border-box;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   margin: auto;
-  border: solid black 2px;
+  border: solid black 1px;
 }
 
 .game-row{
@@ -182,19 +199,13 @@ p{
   left: 0.1%;
 }
 
-#gameCards{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
 .win-model{
   position: fixed;
   display: flex;
   flex-wrap: wrap;
   top: 15%;
   left: 25%;
-  width: 50%;
+  width: 53%;
   height: 60%;
   background-image: url(../images/Win.jpg);
   background-size: cover;

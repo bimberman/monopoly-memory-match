@@ -7,11 +7,15 @@
 }
 
 .completed-card.col-3{
-  height: 75%;
+  height: 67%;
 }
 
 .completed-card.col-2{
-  height: 40%;
+  height: 80%;
+}
+
+.game-col-1{
+  width: 9.1%;
 }
 
 /* Based on 12 columns minus a little (8.33% would be exact 12 col) */
