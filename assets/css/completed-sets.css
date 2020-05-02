@@ -47,106 +47,115 @@
   background-image: url(../images/slim_cards/slim_card_1.jpg);
 }
 
-#train1-card{
+#park-card{
   background-image: url(../images/slim_cards/slim_card_2.jpg);
 }
 
-#oriental-card{
+#boardwalk-card{
   background-image: url(../images/slim_cards/slim_card_3.jpg);
 }
 
-#vermont-card{
+#electric-card{
   background-image: url(../images/slim_cards/slim_card_4.jpg);
 }
 
-#connecticut-card{
+#water-card{
   background-image: url(../images/slim_cards/slim_card_5.jpg);
 }
 
-#charles-card{
+/* 6 & 7 are the same card of community chest */
+#community-card6{
   background-image: url(../images/slim_cards/slim_card_6.jpg);
 }
 
-#electric-card{
+#community-card7{
   background-image: url(../images/slim_cards/slim_card_7.jpg);
 }
 
-#states-card{
+#oriental-card{
   background-image: url(../images/slim_cards/slim_card_8.jpg);
 }
 
-#virginia-card{
+#vermont-card{
   background-image: url(../images/slim_cards/slim_card_9.jpg);
 }
 
-#train2-card{
+#connecticut-card{
   background-image: url(../images/slim_cards/slim_card_10.jpg);
 }
 
-#james-card{
+#charles-card{
   background-image: url(../images/slim_cards/slim_card_11.jpg);
 }
 
-#tennessee-card{
+#states-card{
   background-image: url(../images/slim_cards/slim_card_12.jpg);
 }
 
-#new-york-card{
+#virginia-card{
   background-image: url(../images/slim_cards/slim_card_13.jpg);
 }
 
-#kentucky-card{
+#james-card{
   background-image: url(../images/slim_cards/slim_card_14.jpg);
 }
 
-#indiana-card{
+#tennessee-card{
   background-image: url(../images/slim_cards/slim_card_15.jpg);
 }
 
-#illinois-card{
+#new-york-card{
   background-image: url(../images/slim_cards/slim_card_16.jpg);
 }
 
-#train3-card{
+#kentucky-card{
   background-image: url(../images/slim_cards/slim_card_17.jpg);
 }
 
-#atlantic-card{
+#indiana-card{
   background-image: url(../images/slim_cards/slim_card_18.jpg);
 }
 
-#ventnor-card{
+#illinois-card{
   background-image: url(../images/slim_cards/slim_card_19.jpg);
 }
 
-#water-card{
+#atlantic-card{
   background-image: url(../images/slim_cards/slim_card_20.jpg);
 }
 
-#marvin-card{
+#ventnor-card{
   background-image: url(../images/slim_cards/slim_card_21.jpg);
 }
 
-#pacific-card{
+#marvin-card{
   background-image: url(../images/slim_cards/slim_card_22.jpg);
 }
 
-#carolina-card{
+#pacific-card{
   background-image: url(../images/slim_cards/slim_card_23.jpg);
 }
 
-#pennsylvania-card{
+#carolina-card{
   background-image: url(../images/slim_cards/slim_card_24.jpg);
 }
 
-#train4-card{
+#pennsylvania-card{
   background-image: url(../images/slim_cards/slim_card_25.jpg);
 }
 
-#park-card{
+#train1-card{
   background-image: url(../images/slim_cards/slim_card_26.jpg);
 }
 
-#boardwalk-card{
+#train2-card{
   background-image: url(../images/slim_cards/slim_card_27.jpg);
+}
+
+#train3-card{
+  background-image: url(../images/slim_cards/slim_card_28.jpg);
+}
+
+#train4-card{
+  background-image: url(../images/slim_cards/slim_card_29.jpg);
 }

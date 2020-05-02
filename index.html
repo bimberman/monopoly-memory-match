@@ -12,10 +12,16 @@
 <body>
   <div class="tutorial-model" id="tutorial-model">
     <h2>Instructions:</h2>
-    <h3>To play simply press on a card to reveal its front face, <br>
-       then try to find the other cards in it's set.<br>
-      If you find all members of a set, then they will appear in the completed sets section</h3>
-    <img src="./assets/tutorial/tutorial1.gif" alt="tutorial 1" srcset="how to play the game" class="tutorial">
+    <ol class="instructions" type="I">
+      <li>
+        <h3>press on a card to reveal its front face,</h3>
+      </li>
+      <li>
+        <h3>then try to find the other cards in it's set.</h3>
+      </li>
+    </ol>
+    <h3>If you find all members of a set, then they will appear in the completed sets section</h3>
+    <img src="./assets/tutorial/tutorial1.gif" alt="tutorial 1" class="tutorial">
     <button id="tutorial-button">Wanna Play?</button>
   </div>
   <div class="row header-row"></div>
@@ -61,6 +67,13 @@
         </div>
       </div>
       <div class="completed-set col-4">
+        <p class="col-12" id="dark-blue">Dark Blue Set</p>
+        <div class="completed-cards">
+          <div class="completed-card col-3 dark-blue hidden" id="park-card"></div>
+          <div class="completed-card col-3 dark-blue hidden" id="boardwalk-card"></div>
+        </div>
+      </div>
+      <div class="completed-set col-4">
         <p class="col-12" id="orange">Orange Set</p>
         <div class="completed-cards">
           <div class="completed-card col-3 orange hidden" id="james-card"></div>
@@ -74,6 +87,13 @@
           <div class="completed-card col-3 red hidden" id="kentucky-card"></div>
           <div class="completed-card col-3 red hidden" id="indiana-card"></div>
           <div class="completed-card col-3 red hidden" id="illinois-card"></div>
+        </div>
+      </div>
+      <div class="completed-set col-4">
+        <p class="col-12" id="utility">Utilities Set</p>
+        <div class="completed-cards">
+          <div class="completed-card col-3 utility hidden" id="electric-card"></div>
+          <div class="completed-card col-3 utility hidden" id="water-card"></div>
         </div>
       </div>
       <div class="completed-set col-4">
@@ -93,35 +113,19 @@
         </div>
       </div>
       <div class="completed-set col-4">
-        <p class="col-12" id="dark-blue">Dark Blue Set</p>
+        <p class="col-12">Community</p>
         <div class="completed-cards">
-          <div class="completed-card col-3 dark-blue hidden" id="park-card"></div>
-          <div class="completed-card col-3 dark-blue hidden" id="boardwalk-card"></div>
+          <div class="completed-card col-3 community hidden" id="community-card6"></div>
+          <div class="completed-card col-3 community hidden" id="community-card7"></div>
         </div>
       </div>
-      <div class="completed-set col-4">
+      <div class="completed-set col-8">
         <p class="col-12" id="railroad">Railroad Set</p>
         <div class="completed-cards">
           <div class="completed-card col-2 train hidden" id="train1-card"></div>
           <div class="completed-card col-2 train hidden" id="train2-card"></div>
           <div class="completed-card col-2 train hidden" id="train3-card"></div>
           <div class="completed-card col-2 train hidden" id="train4-card"></div>
-        </div>
-      </div>
-      <div class="completed-set col-4">
-        <p class="col-12" id="utility">Utilities Set</p>
-        <div class="completed-cards">
-          <div class="completed-card col-3 utility hidden" id="electric-card"></div>
-          <div class="completed-card col-3 utility hidden" id="water-card"></div>
-        </div>
-      </div>
-      <div class="completed-set col-8">
-        <p class="col-12">Community Chest</p>
-        <div class="completed-cards">
-          <div class="completed-card col-2 hidden"></div>
-          <div class="completed-card col-2 hidden"></div>
-          <div class="completed-card col-2 hidden"></div>
-          <div class="completed-card col-2 hidden"></div>
         </div>
       </div>
     </aside>

@@ -7,7 +7,7 @@ var cardsFront = [];
 var cardsBack = [];
 
 // Number of cards in the game
-var numOfCards = 28;
+var numOfCards = 30;
 // How many cards are in the set of the first card clicked
 var cardsInSet;
 
@@ -24,7 +24,7 @@ var thirdCardFront;
 var fourthCardFront;
 
 // Rounds
-var maxRounds = 10;
+var maxRounds = 11;
 var rounds = 0;
 
 // The model which will inform the user they have won
@@ -51,20 +51,21 @@ var tutorialButtonEle = document.getElementById("tutorial-button");
 
 const colorOptions = {
   "purple": 2,
+  "dark-blue": 2,
+  "utility": 2,
+  "community": 2,
   "light-blue": 3,
   "magenta": 3,
   "orange": 3,
   "red": 3,
   "yellow": 3,
   "green": 3,
-  "dark-blue": 2,
-  "utility": 2,
   "train": 4
 }
 
 /* ----------- function calls ----------- */
 createCards();
-// shuffleCards();
+shuffleCards();
 addCards();
 
 /*----------- Event Listeners -----------*/
@@ -392,7 +393,7 @@ function createCards(){
     cardsFront.push(document.createElement("div"));
     cardsBack.push(document.createElement("div"));
 
-    cards[cardIndex].classList.add("card", "col-1");
+    cards[cardIndex].classList.add("card", "game-col-1");
     cards[cardIndex].setAttribute("id", `card${cardIndex}`)
 
     cardsFront[cardIndex].classList.add("card-front", `card-front${cardIndex}`);
@@ -401,15 +402,17 @@ function createCards(){
 
     switch (cardIndex){
       case 0: case 1: setColor="purple"; break;
-      case 3: case 4: case 5: setColor = "light-blue"; break;
-      case 6: case 8: case 9: setColor = "magenta"; break;
-      case 11: case 12: case 13: setColor = "orange"; break;
-      case 14: case 15: case 16: setColor = "red"; break;
-      case 18: case 19: case 21: setColor = "yellow"; break;
-      case 22: case 23: case 24: setColor = "green"; break;
-      case 26: case 27: setColor = "dark-blue"; break;
-      case 2: case 10: case 17: case 25: setColor = "train"; break;
-      case 7: case 20: setColor = "utility"; break;
+      case 2: case 3: setColor = "dark-blue"; break;
+      case 4: case 5: setColor = "utility"; break;
+      case 6: case 7: setColor = "community"; break;
+      case 8: case 9: case 10: setColor = "light-blue"; break;
+      case 11: case 12: case 13: setColor = "magenta"; break;
+      case 14: case 15: case 16: setColor = "orange"; break;
+      case 17: case 18: case 19: setColor = "red"; break;
+      case 20: case 21: case 22: setColor = "yellow"; break;
+      case 23: case 24: case 25: setColor = "green"; break;
+      case 26: case 27: case 28: case 29: setColor = "train"; break;
+
     }
 
     cardsFront[cardIndex].setAttribute("data-set-color", setColor);
