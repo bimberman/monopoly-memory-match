@@ -49,6 +49,12 @@ var resetButtonEle = document.getElementById("reset-button");
 // Hide the tutorial model
 var tutorialButtonEle = document.getElementById("tutorial-button");
 
+var toggleSoundEle = document.querySelector(".toggle-sound");
+
+/*--------- Audio ---------*/
+var music = new Audio();
+music.src = "D:/Projects Ben/lfz/monopoly_memory_match/assets/audio/Furtive Glance.mp3";
+
 const colorOptions = {
   "purple": 2,
   "dark-blue": 2,
@@ -74,7 +80,10 @@ cardContainerEle.addEventListener("click", handleClick);
 // Event listener to reset the game
 resetButtonEle.addEventListener("click", resetGame);
 // Event listener to hide the model
-tutorialButtonEle.addEventListener("click", function () { fade(tutorialModalEle)})
+tutorialButtonEle.addEventListener("click", showGame)
+//Sound on/off
+toggleSoundEle.addEventListener("click", toggleSound);
+
 
 /*----------- Functions -----------*/
 // Handles the click on the cards
@@ -394,7 +403,7 @@ function createCards(){
     cardsBack.push(document.createElement("div"));
 
     cards[cardIndex].classList.add("card", "game-col-1");
-    cards[cardIndex].setAttribute("id", `card${cardIndex}`)
+    cards[cardIndex].setAttribute("id", `card${cardIndex}`);
 
     cardsFront[cardIndex].classList.add("card-front", `card-front${cardIndex}`);
     cardsFront[cardIndex].style.backgroundImage = `url(./assets/images/slim_cards/slim_card_${cardIndex}.jpg)`;
@@ -425,6 +434,11 @@ function createCards(){
   }
 }
 
+function showGame(){
+  fade(tutorialModalEle);
+  music.play();
+}
+
 function fade(element) {
   var op = 1;  // initial opacity
   var timer = setInterval(function () {
@@ -449,4 +463,8 @@ function unfade(element) {
     element.style.filter = 'alpha(opacity=' + op * 100 + ")";
     op += op * 0.1;
   }, 10);
+}
+
+function toggleSound() {
+  music.muted = !music.muted;
 }
